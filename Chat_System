@@ -11,7 +11,7 @@ class User:
                 print("Chatroom Doesnot exists....")
                 print("First Create the room")
             
-        else: #if self have a room
+        else: #if self have a room#
             print(f"{self.username} already in chatroom ")
     
     def leave_room(self):
