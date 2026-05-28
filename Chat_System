@@ -1,0 +1,63 @@
+class User:
+    def __init__(self, username):
+        self.username= username
+        self.room=None
+    def join_room(self, room):
+        if not self.room: # have no room
+            if room in Chatroom.room: # room present in the list of available room  list
+                self.room=room 
+                print(f"{self.username} joined {self.room.name}")
+            else: 
+                print("Chatroom Doesnot exists....")
+                print("First Create the room")
+            
+        else: #if self have a room
+            print(f"{self.username} already in chatroom ")
+    
+    def leave_room(self):
+        if self.room:
+            print(f"{self.username} left the {self.room.name}")
+            self.room=None
+        
+
+    def send_message(self, content):
+        if self.room:
+            self.room.message.append(f"{self.username}: {content}")
+            print(f"{self.username} send msg")
+            
+        else:
+            print("Join the class first")
+        
+
+
+class Chatroom:
+    room=[]
+    def __init__(self,name):
+        self.name=name
+        Chatroom.room.append(self)
+        self.message=[]  #to store the list of msg in the specific chatroom 
+
+    
+    def show_message(self):
+        print("\n------Group Chats------\n")
+        for msg in self.message:
+            print(msg)
+
+
+room=Chatroom("Python Lounge")
+u1=User("Atharv")
+u2=User("Suyash")
+
+u1.join_room(room)
+u2.join_room(room)
+
+u1.send_message("Hiii")
+u2.send_message("Hello")
+
+u3=User("Raj")
+u3.join_room(room)
+u3.send_message("hello Everyone!!!")
+room.show_message()
+
+u3.leave_room()
+u3.send_message("wfghjk")
